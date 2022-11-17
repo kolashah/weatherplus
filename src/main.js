@@ -167,6 +167,17 @@ document.addEventListener("DOMContentLoaded", () => {
         footer.setAttribute("class", "footer");
         container.appendChild(footer);
 
+
+        const humid = document.createElement("div");
+        humid.setAttribute("class", "humidity");
+        footer.appendChild(humid);
+
+        const humidityDiv = document.createElement("div");
+        humidityDiv.setAttribute("class", "humidity sm-text");
+        humidityDiv.innerText = `Humidity: ${humidity}\u0025`;
+        const humidDiv = document.querySelector(".humidity");
+        humidDiv.appendChild(humidityDiv);
+
         const low = document.createElement("div");
         low.setAttribute("class", "low");
         footer.appendChild(low);
@@ -195,17 +206,7 @@ document.addEventListener("DOMContentLoaded", () => {
         tempMaxDiv.innerText = `${Math.floor(tempMax)}\u00B0`;
         highDiv.appendChild(tempMaxDiv);
 
-        // <i class=""></i>;
 
-        const humid = document.createElement("div");
-        humid.setAttribute("class", "humidity");
-        footer.appendChild(humid);
-
-        const humidityDiv = document.createElement("div");
-        humidityDiv.setAttribute("class", "humidity sm-text");
-        humidityDiv.innerText = `Humidity: ${humidity}\u0025`;
-        const humidDiv = document.querySelector(".humidity");
-        humidDiv.appendChild(humidityDiv);
       });
   });
 });
