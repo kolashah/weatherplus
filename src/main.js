@@ -6,6 +6,8 @@ document.addEventListener("DOMContentLoaded", () => {
   document.addEventListener("submit", function (e) {
     e.preventDefault();
 
+    // if ()
+
     query = document.getElementById("cityInput").value;
     apiKey = "d4c55138bbca34363a7498b9f44c7c5d";
     units = "imperial";
@@ -17,9 +19,10 @@ document.addEventListener("DOMContentLoaded", () => {
       "&units=" +
       units;
 
-    console.log(url);
+    // console.log(url);
 
-    document.getElementById("cityInput").value = ''
+    document.getElementById("cityInput").value = "";
+    this.body.innerHTML = null
 
     fetch(url)
       .then((data) => data.json())
@@ -31,8 +34,9 @@ document.addEventListener("DOMContentLoaded", () => {
         const tempMin = weatherData.main.temp_min;
         const tempMax = weatherData.main.temp_max;
         const humidity = weatherData.main.humidity;
+
         const sunrise = weatherData.sys.sunrise;
-        const sunriseDate = new Date(sunrise);
+        const sunriseDate = new Date(sunrise * 1000);
         let sunriseHours =
           sunriseDate.getHours() < 10
             ? "0" + sunriseDate.getHours()
@@ -41,9 +45,11 @@ document.addEventListener("DOMContentLoaded", () => {
           sunriseDate.getMinutes() < 10
             ? "0" + sunriseDate.getMinutes()
             : sunriseDate.getMinutes();
+
         let sunriseTime = sunriseHours + ":" + sunriseMinutes;
+        
         const sunset = weatherData.sys.sunset;
-        const sunsetDate = new Date(sunset);
+        const sunsetDate = new Date(sunset*1000);
         let sunsetHours =
           sunsetDate.getHours() < 10
             ? "0" + sunsetDate.getHours()
@@ -53,6 +59,7 @@ document.addEventListener("DOMContentLoaded", () => {
             ? "0" + sunsetDate.getMinutes()
             : sunsetDate.getMinutes();
         let sunsetTime = sunsetHours + ":" + sunsetMinutes;
+        console.log(sunriseTime, sunsetTime)
         const description = weatherData.weather[0].description;
         const icon = weatherData.weather[0].icon;
         const imageURL = "http://openweathermap.org/img/wn/" + icon + "@2x.png";
@@ -76,7 +83,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const sunriseDiv = document.createElement("div");
         sunriseDiv.setAttribute("class", "sunrise sm-text");
-        sunriseDiv.innerText = `Sunrise: ${sunriseTime}`;
+        sunriseDiv.innerText = `  ${sunriseTime}`;
         sunriseClass.appendChild(sunriseDiv);
 
         const sunsetClass = document.createElement("div");
@@ -85,9 +92,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const sunsetDiv = document.createElement("div");
         sunsetDiv.setAttribute("class", "sunset sm-text");
-        sunsetDiv.innerText = `Sunset: ${sunsetTime}`;
+        sunsetDiv.innerText = sunsetTime;
         sunsetClass.appendChild(sunsetDiv);
-
 
         //city name
         const cityDiv = document.createElement("div");
@@ -99,7 +105,6 @@ document.addEventListener("DOMContentLoaded", () => {
         cityNameDiv.innerText = cityName;
         const cityNameClass = document.querySelector(".city");
         cityNameClass.appendChild(cityNameDiv);
-
 
         // middle
         const middleDiv = document.createElement("div");
@@ -161,12 +166,10 @@ document.addEventListener("DOMContentLoaded", () => {
         )}\u00B0)`;
         rightHalf.appendChild(feelsLikeTemp);
 
-
         //footer
         const footer = document.createElement("div");
         footer.setAttribute("class", "footer");
         container.appendChild(footer);
-
 
         const humid = document.createElement("div");
         humid.setAttribute("class", "humidity");
@@ -205,8 +208,6 @@ document.addEventListener("DOMContentLoaded", () => {
         tempMaxDiv.setAttribute("class", "tempMax sm-text");
         tempMaxDiv.innerText = `${Math.floor(tempMax)}\u00B0`;
         highDiv.appendChild(tempMaxDiv);
-
-
       });
   });
 });

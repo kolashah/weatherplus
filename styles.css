@@ -1,9 +1,20 @@
 body {
   height: min-content;
   width: min-content    ;
-  background-color: black;
+  /* background-color: black; */
   font-family: 'Fuzzy Bubbles', cursive;
+  background: rgb(41, 118, 174);
+  background: linear-gradient(
+    200deg,
+    rgba(41, 118, 174, 1) 15%,
+    rgba(0, 212, 255, 1) 100%
+  );
 
+}
+
+
+.sunrise {
+  margin-left: 10px;
 }
 
 .bi, .high, .low {
@@ -56,11 +67,11 @@ body {
 }
 
 button {
-  color: #090909;
+  color: white;
   padding: 0.2em 1.7em;
   font-size: 10px;
   border-radius: 0.5em;
-  background: #e8e8e8;
+  background: rgb(93, 134, 184);
   border: 1px solid #e8e8e8;
   transition: all 0.3s;
   height: 20px;
@@ -98,6 +109,11 @@ button:active {
     padding-left: 5px;
 }
 
+/* .feelsLike {
+  position: relative;
+  top: 50px;
+} */
+
 .container {
   width: 425px;
   height: 250px;
@@ -105,7 +121,7 @@ button:active {
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  border: 2px black solid;
+  /* border: 2px black solid; */
   border-radius: 10px;
   background: rgb(41, 118, 174);
   background: linear-gradient(
@@ -122,6 +138,9 @@ button:active {
   display: flex;
   justify-content: center;
   width: 400px;
+  height: 100px;
+  position: relative;
+  bottom: 15px;
 }
 
 .sunset {
@@ -129,7 +148,10 @@ button:active {
 }
 
 .city {
-  padding-top: 15px;
+  /* padding-top: 15px;
+  padding-bottom: none; */
+  font-size: 20px;
+  font-family: 'Lalezar', cursive;
 }
 
 .space {
@@ -171,10 +193,26 @@ h2 {
   background-color: rgba(255, 255, 255, 0.2);
   border-radius: 10px;
   padding: 4px 10px;
+  font-size: 16px;
+}
+
+.header {
+  /* margin-top: 35px; */
+}
+
+.footer {
+  position: relative;
+  top: 10px;
 }
 
 
 
 .temp {
-  margin-bottom: 20px;
+  /* margin-bottom: 20px; */
+  font-size: 25px;
+}
+
+.feelslike {
+  position: relative;
+  bottom: 2px;
 }
