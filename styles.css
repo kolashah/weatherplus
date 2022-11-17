@@ -42,8 +42,15 @@ button:active {
 #sunset,
 #city,
 #middle,
-#iconHalf,
-#tempHalf,
+#leftHalf,
+#rightHalf,
+#icon,
+#description,
+#temp,
+#feelsLike,
+#low,
+#high,
+#humidity,
 #footer {
     border: 1px solid black;
     width: fit-content;
@@ -85,12 +92,19 @@ button:active {
     width: 200px;
 }
 
-#iconHalf,
-#tempHalf {
+#icon {
+    
+}
+
+#leftHalf,
+#rightHalf {
     height: 130px;
     display: flex;
     flex-direction: column;
-    align-content: space-between;
+    /* align-content: space-between; */
+    justify-content: center;
+    align-items: center;
+
 }
 
 h1,
@@ -99,5 +113,14 @@ h2 {
 }
 
 #footer {
+    padding-top: 20px;
     width: 450px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: space-around;
+}
+
+#high {
+    margin: 0px 50px 0px 10px;
 }
