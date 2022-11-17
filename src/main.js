@@ -3,211 +3,212 @@ document.addEventListener("DOMContentLoaded", () => {
   let query;
   let apiKey;
   let units;
-  document.addEventListener("submit", function (e) {
-    e.preventDefault();
 
-    // if ()
+    document.addEventListener("submit", function (e) {
 
-    query = document.getElementById("cityInput").value;
-    apiKey = "d4c55138bbca34363a7498b9f44c7c5d";
-    units = "imperial";
-    url =
-      "https://api.openweathermap.org/data/2.5/weather?q=" +
-      query +
-      "&appid=" +
-      apiKey +
-      "&units=" +
-      units;
+      e.preventDefault();
+      if (document.querySelector(".container")) document.querySelector('.container').remove()
 
-    // console.log(url);
+      query = document.getElementById("cityInput").value;
+      apiKey = "d4c55138bbca34363a7498b9f44c7c5d";
+      units = "imperial";
+      url =
+        "https://api.openweathermap.org/data/2.5/weather?q=" +
+        query +
+        "&appid=" +
+        apiKey +
+        "&units=" +
+        units;
 
-    document.getElementById("cityInput").value = "";
-    this.body.innerHTML = null
+      // console.log(url);
 
-    fetch(url)
-      .then((data) => data.json())
-      .then((data) => {
-        const weatherData = data;
-        const cityName = weatherData.name;
-        const temp = weatherData.main.temp;
-        const feelsLike = weatherData.main.feels_like;
-        const tempMin = weatherData.main.temp_min;
-        const tempMax = weatherData.main.temp_max;
-        const humidity = weatherData.main.humidity;
+      document.getElementById("cityInput").value = "";
+      // this.body.innerHTML = null;
 
-        const sunrise = weatherData.sys.sunrise;
-        const sunriseDate = new Date(sunrise * 1000);
-        let sunriseHours =
-          sunriseDate.getHours() < 10
-            ? "0" + sunriseDate.getHours()
-            : sunriseDate.getHours();
-        let sunriseMinutes =
-          sunriseDate.getMinutes() < 10
-            ? "0" + sunriseDate.getMinutes()
-            : sunriseDate.getMinutes();
+      fetch(url)
+        .then((data) => data.json())
+        .then((data) => {
+          const weatherData = data;
+          const cityName = weatherData.name;
+          const temp = weatherData.main.temp;
+          const feelsLike = weatherData.main.feels_like;
+          const tempMin = weatherData.main.temp_min;
+          const tempMax = weatherData.main.temp_max;
+          const humidity = weatherData.main.humidity;
 
-        let sunriseTime = sunriseHours + ":" + sunriseMinutes;
-        
-        const sunset = weatherData.sys.sunset;
-        const sunsetDate = new Date(sunset*1000);
-        let sunsetHours =
-          sunsetDate.getHours() < 10
-            ? "0" + sunsetDate.getHours()
-            : sunsetDate.getHours();
-        let sunsetMinutes =
-          sunsetDate.getMinutes() < 10
-            ? "0" + sunsetDate.getMinutes()
-            : sunsetDate.getMinutes();
-        let sunsetTime = sunsetHours + ":" + sunsetMinutes;
-        console.log(sunriseTime, sunsetTime)
-        const description = weatherData.weather[0].description;
-        const icon = weatherData.weather[0].icon;
-        const imageURL = "http://openweathermap.org/img/wn/" + icon + "@2x.png";
-        // console.log(data);
+          const sunrise = weatherData.sys.sunrise;
+          const sunriseDate = new Date(sunrise * 1000);
+          let sunriseHours =
+            sunriseDate.getHours() < 10
+              ? "0" + sunriseDate.getHours()
+              : sunriseDate.getHours();
+          let sunriseMinutes =
+            sunriseDate.getMinutes() < 10
+              ? "0" + sunriseDate.getMinutes()
+              : sunriseDate.getMinutes();
 
-        //main container
-        const container = document.createElement("div");
-        container.setAttribute("class", "container");
-        document.body.appendChild(container);
+          let sunriseTime = sunriseHours + ":" + sunriseMinutes;
 
-        //container header
-        const header = document.createElement("div");
-        header.setAttribute("class", "header");
-        const containerID = document.querySelector(".container");
-        containerID.appendChild(header);
+          const sunset = weatherData.sys.sunset;
+          const sunsetDate = new Date(sunset * 1000);
+          let sunsetHours =
+            sunsetDate.getHours() < 10
+              ? "0" + sunsetDate.getHours()
+              : sunsetDate.getHours();
+          let sunsetMinutes =
+            sunsetDate.getMinutes() < 10
+              ? "0" + sunsetDate.getMinutes()
+              : sunsetDate.getMinutes();
+          let sunsetTime = sunsetHours + ":" + sunsetMinutes;
+          const description = weatherData.weather[0].description;
+          const icon = weatherData.weather[0].icon;
+          const imageURL =
+            "http://openweathermap.org/img/wn/" + icon + "@2x.png";
+          // console.log(data);
 
-        const sunriseClass = document.createElement("div");
-        sunriseClass.setAttribute("class", "bi bi-sunrise fa-4x");
-        const headerID = document.querySelector(".header");
-        headerID.appendChild(sunriseClass);
+          //main container
+          const container = document.createElement("div");
+          container.setAttribute("class", "container");
+          document.body.appendChild(container);
 
-        const sunriseDiv = document.createElement("div");
-        sunriseDiv.setAttribute("class", "sunrise sm-text");
-        sunriseDiv.innerText = `  ${sunriseTime}`;
-        sunriseClass.appendChild(sunriseDiv);
+          //container header
+          const header = document.createElement("div");
+          header.setAttribute("class", "header");
+          const containerID = document.querySelector(".container");
+          containerID.appendChild(header);
 
-        const sunsetClass = document.createElement("div");
-        sunsetClass.setAttribute("class", "bi bi-sunset-fill fa-4x");
-        headerID.appendChild(sunsetClass);
+          const sunriseClass = document.createElement("div");
+          sunriseClass.setAttribute("class", "bi bi-sunrise fa-4x");
+          const headerID = document.querySelector(".header");
+          headerID.appendChild(sunriseClass);
 
-        const sunsetDiv = document.createElement("div");
-        sunsetDiv.setAttribute("class", "sunset sm-text");
-        sunsetDiv.innerText = sunsetTime;
-        sunsetClass.appendChild(sunsetDiv);
+          const sunriseDiv = document.createElement("div");
+          sunriseDiv.setAttribute("class", "sunrise sm-text");
+          sunriseDiv.innerText = `  ${sunriseTime}`;
+          sunriseClass.appendChild(sunriseDiv);
 
-        //city name
-        const cityDiv = document.createElement("div");
-        cityDiv.setAttribute("class", "city");
-        containerID.appendChild(cityDiv);
+          const sunsetClass = document.createElement("div");
+          sunsetClass.setAttribute("class", "bi bi-sunset-fill fa-4x");
+          headerID.appendChild(sunsetClass);
 
-        const cityNameDiv = document.createElement("h1");
-        cityNameDiv.setAttribute("class", "cityName mid-text");
-        cityNameDiv.innerText = cityName;
-        const cityNameClass = document.querySelector(".city");
-        cityNameClass.appendChild(cityNameDiv);
+          const sunsetDiv = document.createElement("div");
+          sunsetDiv.setAttribute("class", "sunset sm-text");
+          sunsetDiv.innerText = sunsetTime;
+          sunsetClass.appendChild(sunsetDiv);
 
-        // middle
-        const middleDiv = document.createElement("div");
-        middleDiv.setAttribute("class", "middle");
-        containerID.appendChild(middleDiv);
+          //city name
+          const cityDiv = document.createElement("div");
+          cityDiv.setAttribute("class", "city");
+          containerID.appendChild(cityDiv);
 
-        //middle left
-        const leftHalf = document.createElement("div");
-        leftHalf.setAttribute("class", "leftHalf");
-        const middleID = document.querySelector(".middle");
-        middleID.appendChild(leftHalf);
+          const cityNameDiv = document.createElement("h1");
+          cityNameDiv.setAttribute("class", "cityName mid-text");
+          cityNameDiv.innerText = cityName;
+          const cityNameClass = document.querySelector(".city");
+          cityNameClass.appendChild(cityNameDiv);
 
-        const iconDiv = document.createElement("div");
-        iconDiv.setAttribute("class", "icon");
-        const leftID = document.querySelector(".leftHalf");
-        leftID.appendChild(iconDiv);
+          // middle
+          const middleDiv = document.createElement("div");
+          middleDiv.setAttribute("class", "middle");
+          containerID.appendChild(middleDiv);
 
-        const weatherIcon = document.createElement("img");
-        weatherIcon.setAttribute("class", "icon");
-        weatherIcon.setAttribute("src", imageURL);
-        weatherIcon.innerText = icon;
-        const WeatherIconDiv = document.querySelector(".icon");
-        WeatherIconDiv.appendChild(weatherIcon);
+          //middle left
+          const leftHalf = document.createElement("div");
+          leftHalf.setAttribute("class", "leftHalf");
+          const middleID = document.querySelector(".middle");
+          middleID.appendChild(leftHalf);
 
-        const descriptionDiv = document.createElement("div");
-        descriptionDiv.setAttribute("class", "description");
-        leftHalf.appendChild(descriptionDiv);
+          const iconDiv = document.createElement("div");
+          iconDiv.setAttribute("class", "icon");
+          const leftID = document.querySelector(".leftHalf");
+          leftID.appendChild(iconDiv);
 
-        const weather = document.createElement("h3");
-        weather.setAttribute("class", "currentWeather");
-        weather.innerText = description;
-        const descDiv = document.querySelector(".description");
-        descDiv.appendChild(weather);
+          const weatherIcon = document.createElement("img");
+          weatherIcon.setAttribute("class", "icon");
+          weatherIcon.setAttribute("src", imageURL);
+          weatherIcon.innerText = icon;
+          const WeatherIconDiv = document.querySelector(".icon");
+          WeatherIconDiv.appendChild(weatherIcon);
 
-        //space
-        const spaceDiv = document.createElement("div");
-        spaceDiv.setAttribute("class", "space");
-        middleID.appendChild(spaceDiv);
+          const descriptionDiv = document.createElement("div");
+          descriptionDiv.setAttribute("class", "description");
+          leftHalf.appendChild(descriptionDiv);
 
-        //right half
-        const rightHalf = document.createElement("div");
-        rightHalf.setAttribute("class", "rightHalf");
-        middleID.appendChild(rightHalf);
+          const weather = document.createElement("h3");
+          weather.setAttribute("class", "currentWeather");
+          weather.innerText = description;
+          const descDiv = document.querySelector(".description");
+          descDiv.appendChild(weather);
 
-        const tempDiv = document.createElement("div");
-        tempDiv.setAttribute("class", "temp");
-        rightHalf.appendChild(tempDiv);
+          //space
+          const spaceDiv = document.createElement("div");
+          spaceDiv.setAttribute("class", "space");
+          middleID.appendChild(spaceDiv);
 
-        const currentTemp = document.createElement("h1");
-        currentTemp.setAttribute("class", "temperature");
-        currentTemp.innerText = `${Math.floor(temp)}\u00B0`;
-        const tempSelect = document.querySelector(".temp");
-        tempSelect.appendChild(currentTemp);
+          //right half
+          const rightHalf = document.createElement("div");
+          rightHalf.setAttribute("class", "rightHalf");
+          middleID.appendChild(rightHalf);
 
-        const feelsLikeTemp = document.createElement("div");
-        feelsLikeTemp.setAttribute("class", "feelslike sm-text");
-        feelsLikeTemp.innerText = `(Feels Like: ${Math.floor(
-          feelsLike
-        )}\u00B0)`;
-        rightHalf.appendChild(feelsLikeTemp);
+          const tempDiv = document.createElement("div");
+          tempDiv.setAttribute("class", "temp");
+          rightHalf.appendChild(tempDiv);
 
-        //footer
-        const footer = document.createElement("div");
-        footer.setAttribute("class", "footer");
-        container.appendChild(footer);
+          const currentTemp = document.createElement("h1");
+          currentTemp.setAttribute("class", "temperature");
+          currentTemp.innerText = `${Math.floor(temp)}\u00B0`;
+          const tempSelect = document.querySelector(".temp");
+          tempSelect.appendChild(currentTemp);
 
-        const humid = document.createElement("div");
-        humid.setAttribute("class", "humidity");
-        footer.appendChild(humid);
+          const feelsLikeTemp = document.createElement("div");
+          feelsLikeTemp.setAttribute("class", "feelslike sm-text");
+          feelsLikeTemp.innerText = `(Feels Like: ${Math.floor(
+            feelsLike
+          )}\u00B0)`;
+          rightHalf.appendChild(feelsLikeTemp);
 
-        const humidityDiv = document.createElement("div");
-        humidityDiv.setAttribute("class", "humidity sm-text");
-        humidityDiv.innerText = `Humidity: ${humidity}\u0025`;
-        const humidDiv = document.querySelector(".humidity");
-        humidDiv.appendChild(humidityDiv);
+          //footer
+          const footer = document.createElement("div");
+          footer.setAttribute("class", "footer");
+          container.appendChild(footer);
 
-        const low = document.createElement("div");
-        low.setAttribute("class", "low");
-        footer.appendChild(low);
+          const humid = document.createElement("div");
+          humid.setAttribute("class", "humidity");
+          footer.appendChild(humid);
 
-        const lowArrow = document.createElement("div");
-        lowArrow.setAttribute("class", "lowArrow bi bi-caret-down-fill");
-        const lowDiv = document.querySelector(".low");
-        lowDiv.appendChild(lowArrow);
+          const humidityDiv = document.createElement("div");
+          humidityDiv.setAttribute("class", "humidity sm-text");
+          humidityDiv.innerText = `Humidity: ${humidity}\u0025`;
+          const humidDiv = document.querySelector(".humidity");
+          humidDiv.appendChild(humidityDiv);
 
-        const tempMinDiv = document.createElement("div");
-        tempMinDiv.setAttribute("class", "tempMin sm-text");
-        tempMinDiv.innerText = `${Math.floor(tempMin)}\u00B0`;
-        lowDiv.appendChild(tempMinDiv);
+          const low = document.createElement("div");
+          low.setAttribute("class", "low");
+          footer.appendChild(low);
 
-        const high = document.createElement("div");
-        high.setAttribute("class", "high");
-        footer.appendChild(high);
+          const lowArrow = document.createElement("div");
+          lowArrow.setAttribute("class", "lowArrow bi bi-caret-down-fill");
+          const lowDiv = document.querySelector(".low");
+          lowDiv.appendChild(lowArrow);
 
-        const highArrow = document.createElement("div");
-        highArrow.setAttribute("class", "highArrow bi bi-caret-up-fill");
-        const highDiv = document.querySelector(".high");
-        highDiv.appendChild(highArrow);
+          const tempMinDiv = document.createElement("div");
+          tempMinDiv.setAttribute("class", "tempMin sm-text");
+          tempMinDiv.innerText = `${Math.floor(tempMin)}\u00B0`;
+          lowDiv.appendChild(tempMinDiv);
 
-        const tempMaxDiv = document.createElement("div");
-        tempMaxDiv.setAttribute("class", "tempMax sm-text");
-        tempMaxDiv.innerText = `${Math.floor(tempMax)}\u00B0`;
-        highDiv.appendChild(tempMaxDiv);
-      });
-  });
+          const high = document.createElement("div");
+          high.setAttribute("class", "high");
+          footer.appendChild(high);
+
+          const highArrow = document.createElement("div");
+          highArrow.setAttribute("class", "highArrow bi bi-caret-up-fill");
+          const highDiv = document.querySelector(".high");
+          highDiv.appendChild(highArrow);
+
+          const tempMaxDiv = document.createElement("div");
+          tempMaxDiv.setAttribute("class", "tempMax sm-text");
+          tempMaxDiv.innerText = `${Math.floor(tempMax)}\u00B0`;
+          highDiv.appendChild(tempMaxDiv);
+        });
+    });
 });

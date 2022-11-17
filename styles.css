@@ -9,6 +9,7 @@ body {
     rgba(41, 118, 174, 1) 15%,
     rgba(0, 212, 255, 1) 100%
   );
+  border-radius: 10px;
 
 }
 
@@ -195,6 +196,7 @@ h2 {
   padding: 4px 10px;
   font-size: 16px;
 }
+
 
 .header {
   /* margin-top: 35px; */
