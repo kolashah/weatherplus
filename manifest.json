@@ -1,11 +1,20 @@
 {
-    "name": "Weather Extension",
-    "version": "1.0.0",
-    "description": "Why waste time say lot word when few word do trick",
-    "manifest_version": 2,
-    "author": "Aalok & Dennis",
-    "action":{
-        "default_popup": "index.html"
-    },
-    "permissions": ["activeTab"]
+  "name": "Weather Extension",
+  "version": "1.0.0",
+  "description": "Weather Extension",
+  "manifest_version": 3,
+  "author": "Aalok & Dennis",
+  "content_scripts": [
+    {
+      "matches": ["http://*/*"],
+      "css": ["./styles.css"]
+    }
+  ],
+  "action": {
+    "default_popup": "index.html",
+    "default_icon": {
+      "128": "./content/Extension_Icon.png"
+    }
+  },
+  "permissions": ["activeTab"]
 }
