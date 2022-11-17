@@ -1,0 +1,11 @@
+{
+    "name": "Weather Extension",
+    "version": "1.0.0",
+    "description": "Why waste time say lot word when few word do trick",
+    "manifest_version": 2,
+    "author": "Aalok & Dennis",
+    "action":{
+        "default_popup": "index.html"
+    },
+    "permissions": ["activeTab"]
+}
