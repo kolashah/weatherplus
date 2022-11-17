@@ -9,10 +9,31 @@
 
 <body>
     <form id="inputForm">
-        <label for="cityInput">City Name:</label>
-        <input id="cityInput" type="text" name="cityName" placeholder="Search anywhere..." />
+        <!-- <label for="cityInput">City Name:</label> -->
+        <input id="cityInput" type="text" name="cityName" placeholder="City name..." />
         <button type="submit">Get Weather</button>
     </form>
+    <div id="container">
+        <div id="sunrise"></div>
+        <div id="sunset"></div>
+        <div id="city"></div>
+        <div id="middle">
+            <div id="leftHalf">
+                <div id="icon"></div>
+                <div id="description"></div>
+            </div>
+            <div id='space'></div>
+            <div id="rightHalf">
+                <div id="temp"></div>
+                <div id="feelsLike"></div>
+            </div>
+        </div>
+        <div id="footer">
+            <div id="low"></div>
+            <div id="high"></div>
+            <div id="humidity"></div>
+        </div>
+    </div>
     <script src="src/main.js"></script>
 </body>
 
